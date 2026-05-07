@@ -10,8 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # --- CONFIGURAÇÕES DO MOVIDESK ---
-MOVI_TOKEN = "2ebb185e-9444-4688-8a45-fadd1534353b"
-MOVI_API_URL = f"https://api.movidesk.com/public/v1/tickets?token={MOVI_TOKEN}"
+
 
 @app.route('/')
 def index():
