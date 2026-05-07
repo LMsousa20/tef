@@ -1,15 +1,26 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const MOVI_TOKEN = "2ebb185e-9444-4688-8a45-fadd1534353b";
 const MOVI_API_URL = `https://api.movidesk.com/public/v1/tickets?token=${MOVI_TOKEN}`;
 
 export default async function handler(req, res) {
+  // CORS para chamadas do browser
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(204).end();
+    return;
+  }
+
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
   }
 
   try {
+    // Vercel já faz o parse do body JSON automaticamente
     const data = req.body;
 
     console.log('\n' + '='.repeat(50));
@@ -17,22 +28,24 @@ export default async function handler(req, res) {
     console.log(JSON.stringify(data, null, 4));
     console.log('='.repeat(50) + '\n');
 
-    const razao_social = data.razaoSocial || '';
-    const cnpj = data.cnpj || '';
-    const responsavel = data.responsavel || '';
-    const telefone = data.telefone || '';
-    const email = data.email || '';
-    const administradoras = data.administradoras || [];
-    const bandeiras = data.bandeiras || [];
+    const razao_social   = data.razaoSocial      || '';
+    const cnpj           = data.cnpj             || '';
+    const responsavel    = data.responsavel       || '';
+    const telefone       = data.telefone          || '';
+    const email          = data.email             || '';
+    const administradoras = data.administradoras  || [];
+    const bandeiras      = data.bandeiras         || [];
 
-    const admin_nomes = administradoras.map(adm => adm.nome);
-    const admin_selecionadas = admin_nomes;
+    const admin_nomes     = administradoras.map(adm => adm.nome);
     const admin_principal = admin_nomes[0] || '';
 
     let terminal_logico = '';
     if (administradoras.length > 0) {
       const campos = administradoras[0].campos || {};
-      terminal_logico = campos['Terminal Lógico'] || campos['Número Lógico'] || campos['Cód. Estabelecimento'] || '';
+      terminal_logico =
+        campos['Terminal Lógico']     ||
+        campos['Número Lógico']       ||
+        campos['Cód. Estabelecimento'] || '';
     }
 
     const resumo_formulario = `
@@ -45,7 +58,7 @@ Solicitação via Formulário Web
 📧 E-mail: ${email}
 💻 Terminal Lógico: ${terminal_logico}
 🔑 Cód. Afiliação: 
-💳 Administradoras: ${admin_selecionadas.join(', ')}
+💳 Administradoras: ${admin_nomes.join(', ')}
 🚩 Bandeiras: ${bandeiras.join(', ')}
     `.trim();
 
@@ -57,73 +70,23 @@ Solicitação via Formulário Web
       serviceFirstLevelId: 1290660,
       serviceFirstLevel: "TEF",
       serviceSecondLevel: "Implantação ",
-      createdBy: {
-        id: "1665634567"
-      },
-      clients: [
-        {
-          id: "1915669336",
-          personType: 1
-        }
-      ],
-      actions: [
-        {
-          type: 2,
-          origin: 0,
-          description: resumo_formulario
-        }
-      ],
+      createdBy: { id: "1665634567" },
+      clients: [{ id: "1915669336", personType: 1 }],
+      actions: [{ type: 2, origin: 0, description: resumo_formulario }],
       customFieldValues: [
-        {
-          customFieldId: 242386,
-          customFieldRuleId: 127968,
-          line: 1,
-          value: cnpj
-        },
-        {
-          customFieldId: 242387,
-          customFieldRuleId: 127968,
-          line: 1,
-          value: razao_social
-        },
-        {
-          customFieldId: 242388,
-          customFieldRuleId: 127968,
-          line: 1,
-          value: responsavel
-        },
-        {
-          customFieldId: 242389,
-          customFieldRuleId: 127968,
-          line: 1,
-          value: telefone
-        },
-        {
-          customFieldId: 242390,
-          customFieldRuleId: 127968,
-          line: 1,
-          value: email
-        },
+        { customFieldId: 242386, customFieldRuleId: 127968, line: 1, value: cnpj },
+        { customFieldId: 242387, customFieldRuleId: 127968, line: 1, value: razao_social },
+        { customFieldId: 242388, customFieldRuleId: 127968, line: 1, value: responsavel },
+        { customFieldId: 242389, customFieldRuleId: 127968, line: 1, value: telefone },
+        { customFieldId: 242390, customFieldRuleId: 127968, line: 1, value: email },
         {
           customFieldId: 242391,
           customFieldRuleId: 127968,
           line: 1,
-          items: [
-            { customFieldItem: admin_principal }
-          ]
+          items: [{ customFieldItem: admin_principal }]
         },
-        {
-          customFieldId: 242393,
-          customFieldRuleId: 127968,
-          line: 1,
-          value: terminal_logico
-        },
-        {
-          customFieldId: 242392,
-          customFieldRuleId: 127968,
-          line: 1,
-          value: ""
-        },
+        { customFieldId: 242393, customFieldRuleId: 127968, line: 1, value: terminal_logico },
+        { customFieldId: 242392, customFieldRuleId: 127968, line: 1, value: "" },
         {
           customFieldId: 242399,
           customFieldRuleId: 127968,
@@ -146,7 +109,8 @@ Solicitação via Formulário Web
     if (response.status === 200 || response.status === 201) {
       const protocolo = response.data.protocol;
       console.log(`SUCESSO! Ticket: ${protocolo}`);
-      res.status(200).json({ success: true, protocol: protocolo });
+      // "protocolo" alinhado com o que o index.html lê em resultado.protocolo
+      res.status(200).json({ success: true, protocolo: protocolo });
     } else {
       console.log(`ERRO API (${response.status}): ${JSON.stringify(response.data)}`);
       res.status(400).json({ success: false, error: response.data });

@@ -1,9 +1,19 @@
 {
   "version": 2,
-  "builds": [
+  "functions": {
+    "api/envia.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 30
+    }
+  },
+  "routes": [
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "src": "/api/envia",
+      "dest": "/api/envia.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
