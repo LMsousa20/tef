@@ -140,116 +140,176 @@
 
     <script>
         const adquirentesConfig = [
-            { nome: "Redecard", campos: [{ label: "Número Lógico", digitos: 15 }] },
-            { nome: "Cielo", campos: [{ label: "Terminal Lógico", digitos: 8 }] },
-            { nome: "Stone", campos: [{ label: "Cód. Estabelecimento", digitos: 32 }, { label: "Stonecode", digitos: 9 }] },
-            { nome: "Vero", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Código de Rede", digitos: 11 }] },
-            { nome: "Bin", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Terminal Virtual", digitos: 8 }] },
-            { nome: "Sipag", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Terminal Virtual", digitos: 8 }] },
-            { nome: "Tricard", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }] },
-            { nome: "Safrapay", campos: [{ label: "Terminal Lógico", digitos: 8 }, { label: "Cód. Estabelecimento", digitos: 15 }] },
-            { nome: "Pagseguro", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }] },
-            { nome: "Getnet Frota", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "CEP", digitos: 5 }] },
-            { nome: "Getnet Convencionais", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Terminal Lógico", digitos: 8 }] }
-        ];
+    { nome: "Redecard", campos: [{ label: "Número Lógico", digitos: 15 }] },
+    { nome: "Cielo", campos: [{ label: "Terminal Lógico", digitos: 8 }] },
+    { nome: "Stone", campos: [{ label: "Cód. Estabelecimento", digitos: 32 }, { label: "Stonecode", digitos: 9 }] },
+    { nome: "Vero", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Código de Rede", digitos: 11 }] },
+    { nome: "Bin", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Terminal Virtual", digitos: 8 }] },
+    { nome: "Sipag", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Terminal Virtual", digitos: 8 }] },
+    { nome: "Tricard", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }] },
+    { nome: "Safrapay", campos: [{ label: "Terminal Lógico", digitos: 8 }, { label: "Cód. Estabelecimento", digitos: 15 }] },
+    { nome: "Pagseguro", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }] },
+    { nome: "Getnet Frota", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "CEP", digitos: 5 }] },
+    { nome: "Getnet Convencionais", campos: [{ label: "Cód. Estabelecimento", digitos: 15 }, { label: "Terminal Lógico", digitos: 8 }] }
+];
 
-        const listaBandeiras = [
-            "Mastercard credito", "Mastercard débito", "Master Voucher", "Elo Credito", "Elo Debito",
-            "Hiper crédito", "Hiper débito", "American Express (Amex)", "Visa crédito", "Visa débito",
-            "Ticket", "Visa Vale", "Alelo", "Sodexo", "VR", "Ben Visa Vale", "008 Cards Credito",
-            "008 Cards Debito", "Abrapetite Voucher", "ACCredito Credito", "ACCredito Debito",
-            "Agiplan Credito", "Agiplan Debito", "ASMUBE Credito", "ASMUBE Debito", "Aura Credito",
-            "Avancard Credito", "Avancard Debito", "Avista", "Bamex Voucher", "Banescard Credito",
-            "Banescard Debito", "Banesecard Credito", "Banesecard Debito", "Banesecard Voucher",
-            "Banquet", "BanriCard Private Label", "BanriCard Voucher", "Banrisul Credito",
-            "Banrisul Debito", "Bigcard", "Bigcard Voucher", "Biq Beneficios", "BNBClube Credito",
-            "BNBClube Debito", "BNBClube Voucher", "Bonus CBA", "Bracov Credito", "Bracov Debito",
-            "Cabal Credito", "Cabal Debito", "Cabal Voucher", "Calcard", "Card Ideal Credito",
-            "Cartao do Comercio Debito", "CDC Card Credito", "CDC Card Debito", "Cetelem",
-            "Consolidar Credito", "Consolidar Debito", "Coopercred", "Coopercred Credito",
-            "Credex Credito", "Credex Debito", "Credpar", "CredSystem(Mais)", "CredZ",
-            "Dinners Credito", "Discover Credito", "Eucard Credito", "Eucard Debito",
-            "Eucard Voucher", "Fininvest", "FortBrasil", "Goodcard Credito", "Goodcard Debito",
-            "Goodcard Voucher", "GrandCard Credito", "GrandCard Debito", "Greencard",
-            "ItaCard Credito", "ItaCard Debito", "JCB Credito", "Libercard Credito",
-            "Libercard Debito", "Maxxcard Credito", "Maxxcard Debito", "Maxxcard Voucher",
-            "MaxxVan Credito", "MaxxVan Debito", "Megavale Card Credito", "Megavale Card Debito",
-            "Nutricash", "PAAN Debito", "Personal Card Credito", "Personal Card Debito",
-            "Personal Card Frota", "Personal Card Voucher", "Planvale", "PLMaster GetNetLac",
-            "PLVisa GetNetLac", "Policard Credito", "Policard Debito", "Policard Voucher",
-            "RedeCompras Credito", "RedeCompras Debito", "Redemed Credito", "Sapore",
-            "Senff Credito", "Senff Voucher", "Sicredi Credito", "Sicredi Debito", "Sindcred",
-            "Sorocred Credito", "Sorocred Debito", "Sorocred Voucher", "TrioCard Credito",
-            "TrioCard Debito", "UPI Credito", "Valecard Credito", "Valecard Debito",
-            "Valecard Voucher", "Valefacil", "Valefrota", "Valemulti", "Verdecard",
-            "Verdecard Debito", "Verocheque Credito", "Verocheque Voucher", "Volus Credito",
-            "Volus Debito", "Volus Voucher", "VSCard", "Outros Cartões"
-        ];
+const listaBandeiras = [
+    "Mastercard credito", "Mastercard débito", "Master Voucher", "Elo Credito", "Elo Debito",
+    "Hiper crédito", "Hiper débito", "American Express (Amex)", "Visa crédito", "Visa débito",
+    "Ticket", "Visa Vale", "Alelo", "Sodexo", "VR", "Ben Visa Vale", "008 Cards Credito",
+    "008 Cards Debito", "Abrapetite Voucher", "ACCredito Credito", "ACCredito Debito",
+    "Agiplan Credito", "Agiplan Debito", "ASMUBE Credito", "ASMUBE Debito", "Aura Credito",
+    "Avancard Credito", "Avancard Debito", "Avista", "Bamex Voucher", "Banescard Credito",
+    "Banescard Debito", "Banesecard Credito", "Banesecard Debito", "Banesecard Voucher",
+    "Banquet", "BanriCard Private Label", "BanriCard Voucher", "Banrisul Credito",
+    "Banrisul Debito", "Bigcard", "Bigcard Voucher", "Biq Beneficios", "BNBClube Credito",
+    "BNBClube Debito", "BNBClube Voucher", "Bonus CBA", "Bracov Credito", "Bracov Debito",
+    "Cabal Credito", "Cabal Debito", "Cabal Voucher", "Calcard", "Card Ideal Credito",
+    "Cartao do Comercio Debito", "CDC Card Credito", "CDC Card Debito", "Cetelem",
+    "Consolidar Credito", "Consolidar Debito", "Coopercred", "Coopercred Credito",
+    "Credex Credito", "Credex Debito", "Credpar", "CredSystem(Mais)", "CredZ",
+    "Dinners Credito", "Discover Credito", "Eucard Credito", "Eucard Debito",
+    "Eucard Voucher", "Fininvest", "FortBrasil", "Goodcard Credito", "Goodcard Debito",
+    "Goodcard Voucher", "GrandCard Credito", "GrandCard Debito", "Greencard",
+    "ItaCard Credito", "ItaCard Debito", "JCB Credito", "Libercard Credito",
+    "Libercard Debito", "Maxxcard Credito", "Maxxcard Debito", "Maxxcard Voucher",
+    "MaxxVan Credito", "MaxxVan Debito", "Megavale Card Credito", "Megavale Card Debito",
+    "Nutricash", "PAAN Debito", "Personal Card Credito", "Personal Card Debito",
+    "Personal Card Frota", "Personal Card Voucher", "Planvale", "PLMaster GetNetLac",
+    "PLVisa GetNetLac", "Policard Credito", "Policard Debito", "Policard Voucher",
+    "RedeCompras Credito", "RedeCompras Debito", "Redemed Credito", "Sapore",
+    "Senff Credito", "Senff Voucher", "Sicredi Credito", "Sicredi Debito", "Sindcred",
+    "Sorocred Credito", "Sorocred Debito", "Sorocred Voucher", "TrioCard Credito",
+    "TrioCard Debito", "UPI Credito", "Valecard Credito", "Valecard Debito",
+    "Valecard Voucher", "Valefacil", "Valefrota", "Valemulti", "Verdecard",
+    "Verdecard Debito", "Verocheque Credito", "Verocheque Voucher", "Volus Credito",
+    "Volus Debito", "Volus Voucher", "VSCard", "Outros Cartões"
+];
 
-        function init() {
-            const adminContainer = document.getElementById('container-admins');
-            adquirentesConfig.forEach((adm, idx) => {
-                let inputsHTML = '';
-                adm.campos.forEach((campo) => {
-                    inputsHTML += `
-                        <div class="mt-3">
-                            <label class="text-[10px] font-bold text-blue-600 uppercase block ml-1">${campo.label}</label>
-                            <input type="text" maxlength="${campo.digitos}" oninput="validateInput(this, ${campo.digitos})"
-                                class="w-full px-3 py-2 bg-white border border-blue-200 rounded-lg text-sm outline-none shadow-sm focus:border-blue-500">
-                            <div class="digit-counter invalid-digit">Requerido: ${campo.digitos} dig. (0)</div>
-                        </div>`;
-                });
+function init() {
+    const adminContainer = document.getElementById('container-admins');
+    adquirentesConfig.forEach((adm, idx) => {
+        let inputsHTML = '';
+        adm.campos.forEach((campo) => {
+            inputsHTML += `
+                <div class="mt-3">
+                    <label class="text-[10px] font-bold text-blue-600 uppercase block ml-1">${campo.label}</label>
+                    <input type="text" maxlength="${campo.digitos}" oninput="validateInput(this, ${campo.digitos})"
+                        data-label="${campo.label}"
+                        class="logic-input w-full px-3 py-2 bg-white border border-blue-200 rounded-lg text-sm outline-none shadow-sm focus:border-blue-500">
+                    <div class="digit-counter invalid-digit">Requerido: ${campo.digitos} dig. (0)</div>
+                </div>`;
+        });
 
-                adminContainer.innerHTML += `
-                    <div class="flex flex-col">
-                        <input type="checkbox" id="adm_${idx}" class="peer hidden checkbox-card">
-                        <label for="adm_${idx}" class="w-full text-center py-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 font-bold text-gray-700 uppercase text-xs transition-all">
-                            ${adm.nome}
-                        </label>
-                        <div class="logic-field px-1">${inputsHTML}</div>
-                    </div>`;
-            });
+        adminContainer.innerHTML += `
+            <div class="flex flex-col">
+                <input type="checkbox" id="adm_${idx}" class="peer hidden checkbox-card adm-checkbox" data-nome="${adm.nome}">
+                <label for="adm_${idx}" class="w-full text-center py-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 font-bold text-gray-700 uppercase text-xs transition-all">
+                    ${adm.nome}
+                </label>
+                <div class="logic-field px-1">${inputsHTML}</div>
+            </div>`;
+    });
 
-            
+    const bandContainer = document.getElementById('container-bandeiras');
+    listaBandeiras.forEach((b, i) => {
+        bandContainer.innerHTML += `
+            <div class="relative flex">
+                <input type="checkbox" id="band_${i}" class="peer hidden checkbox-card band-checkbox" data-bandeira="${b}">
+                <label for="band_${i}" class="w-full block py-2 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 text-[9px] font-bold text-gray-600 uppercase transition-all leading-tight flex items-center justify-center min-h-[44px] px-1">
+                    ${b}
+                </label>
+            </div>`;
+    });
+}
 
-            const bandContainer = document.getElementById('container-bandeiras');
-            listaBandeiras.forEach((b, i) => {
-                bandContainer.innerHTML += `
-                    <div class="relative flex">
-                        <input type="checkbox" id="band_${i}" class="peer hidden checkbox-card">
-                        <label for="band_${i}" class="w-full block py-2 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 text-[9px] font-bold text-gray-600 uppercase transition-all leading-tight flex items-center justify-center min-h-[44px] px-1">
-                            ${b}
-                        </label>
-                    </div>`;
-            });
-        }
+function validateInput(el, required) {
+    el.value = el.value.replace(/\D/g, '');
+    const count = el.value.length;
+    const counter = el.nextElementSibling;
+    if (count === required) {
+        counter.className = 'digit-counter valid-digit';
+        counter.innerText = `✓ OK: ${count} dígitos`;
+    } else {
+        counter.className = 'digit-counter invalid-digit';
+        counter.innerText = `Requerido: ${required} dig. (${count})`;
+    }
+}
 
-            
+init();
 
-        function validateInput(el, required) {
-            el.value = el.value.replace(/\D/g, '');
-            const count = el.value.length;
-            const counter = el.nextElementSibling;
-            if (count === required) {
-                counter.className = 'digit-counter valid-digit';
-                counter.innerText = `✓ OK: ${count} dígitos`;
-            } else {
-                counter.className = 'digit-counter invalid-digit';
-                counter.innerText = `Requerido: ${required} dig. (${count})`;
-            }
-        }
+// --- LÓGICA DE ENVIO PARA O RENDER ---
+document.getElementById('tefForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-        init();
+    // 1. Mostrar carregamento
+    Swal.fire({
+        title: 'Enviando...',
+        text: 'Por favor, aguarde enquanto processamos sua solicitação no Movidesk.',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading() }
+    });
 
-        document.getElementById('tefForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+    // 2. Coletar Administradoras selecionadas e seus campos lógicos
+    let admins = [];
+    document.querySelectorAll('.adm-checkbox:checked').forEach(cb => {
+        let admNome = cb.getAttribute('data-nome');
+        let campos = {};
+        cb.parentElement.querySelectorAll('.logic-input').forEach(input => {
+            campos[input.getAttribute('data-label')] = input.value;
+        });
+        admins.push({ nome: admNome, campos: campos });
+    });
+
+    // 3. Coletar Bandeiras selecionadas
+    let bandeiras = [];
+    document.querySelectorAll('.band-checkbox:checked').forEach(cb => {
+        bandeiras.push(cb.getAttribute('data-bandeira'));
+    });
+
+    // 4. Montar o objeto de dados (JSON)
+    const dados = {
+        razaoSocial: document.getElementById('razaoSocial').value,
+        cnpj: document.getElementById('cnpj').value,
+        responsavel: document.getElementById('responsavel').value,
+        telefone: document.getElementById('telefone').value,
+        email: document.getElementById('email').value,
+        administradoras: admins,
+        bandeiras: bandeiras
+    };
+
+    try {
+        // --- TROQUE A URL ABAIXO PELA SUA URL DO RENDER ---
+        const response = await fetch('https://tef-wy04.onrender.com/enviar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok) {
             Swal.fire({
-                title: 'Enviado!',
-                text: 'Sua solicitação foi processada com sucesso.',
+                title: 'Sucesso!',
+                text: `Ticket ${resultado.protocolo} criado com sucesso!`,
                 icon: 'success',
                 confirmButtonColor: '#2563eb'
             });
+            document.getElementById('tefForm').reset();
+            // Resetar contadores visuais
+            document.querySelectorAll('.digit-counter').forEach(c => c.innerText = "Requerido: 0 dig.");
+        } else {
+            throw new Error(resultado.error || 'Erro ao criar ticket');
+        }
+    } catch (error) {
+        Swal.fire({
+            title: 'Erro!',
+            text: 'Não foi possível conectar ao servidor. Verifique se o Render está ativo.',
+            icon: 'error',
+            confirmButtonColor: '#ef4444'
         });
+    }
+});
     </script>
 </body>
 
