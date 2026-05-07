@@ -10,6 +10,7 @@ def handler(request):
     if request.method != 'POST':
         return {
             'statusCode': 405,
+            'headers': {'Content-Type': 'application/json'},
             'body': json.dumps({'error': 'Method not allowed'})
         }
     
@@ -161,12 +162,14 @@ def handler(request):
             print(f"SUCESSO! Ticket: {protocolo}")
             return {
                 'statusCode': 200,
+                'headers': {'Content-Type': 'application/json'},
                 'body': json.dumps({"success": True, "protocol": protocolo})
             }
         else:
             print(f"ERRO API ({response.status_code}): {response.text}")
             return {
                 'statusCode': 400,
+                'headers': {'Content-Type': 'application/json'},
                 'body': json.dumps({"success": False, "error": response.text})
             }
 
@@ -174,5 +177,6 @@ def handler(request):
         print(f"ERRO NO SERVIDOR: {str(e)}")
         return {
             'statusCode': 500,
+            'headers': {'Content-Type': 'application/json'},
             'body': json.dumps({"success": False, "error": str(e)})
         }
