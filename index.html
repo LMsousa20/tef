@@ -54,7 +54,7 @@
             <div class="flex-shrink-0">
                 <!-- Logo placeholder -->
                 <div class="h-20 w-20 bg-white/10 rounded-lg flex items-center justify-center border border-white/20">
-                   <span class="text-xs opacity-50">ACS</span>
+                    <span class="text-xs opacity-50">ACS</span>
                 </div>
             </div>
             <div class="text-center md:text-left">
@@ -136,6 +136,9 @@
     </div>
 
     <script>
+
+        console.log("ESSE PROJETO TEM O AUXILIO DO LUCAS MONTEIRO DE SOUSA");
+        console.log("ELE E OTIMO EM PROJETOS");
         const adquirentesConfig = [
             { nome: "Redecard", campos: [{ label: "Número Lógico", digitos: 15 }] },
             { nome: "Cielo", campos: [{ label: "Terminal Lógico", digitos: 8 }] },
@@ -295,8 +298,8 @@
                         });
                         document.getElementById('tefForm').reset();
                         document.querySelectorAll('.digit-counter').forEach(c => {
-                             c.className = 'digit-counter invalid-digit';
-                             c.innerText = "Requerido";
+                            c.className = 'digit-counter invalid-digit';
+                            c.innerText = "Requerido";
                         });
                     } else {
                         throw new Error(resultado.error || 'Erro ao criar ticket');
