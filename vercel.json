@@ -1,16 +1,4 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "functions": {
-    "api/envia.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/envia",
-      "destination": "/api/envia.js"
-    }
-  ]
+  "cleanUrls": true
 }
