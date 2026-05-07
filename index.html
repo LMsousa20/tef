@@ -281,7 +281,7 @@ document.getElementById('tefForm').addEventListener('submit', async function (e)
 
     try {
         // --- TROQUE A URL ABAIXO PELA SUA URL DO RENDER ---
-        const response = await fetch('/api/app', {
+        const response = await fetch('/api/envia', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dados)
