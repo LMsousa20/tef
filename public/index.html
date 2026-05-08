@@ -366,7 +366,7 @@
                 } catch (error) {
                     Swal.fire({
                         title: 'Erro!',
-                        text: 'Erro ao conectar com o servidor da Vercel. Tente novamente mais tarde.',
+                        text: error.message || 'Erro ao conectar com o servidor da Vercel. Tente novamente mais tarde.',
                         icon: 'error',
                         confirmButtonColor: '#ef4444'
                     });

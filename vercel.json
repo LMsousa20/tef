@@ -5,10 +5,6 @@
     {
       "source": "/api/envia",
       "destination": "/api/envia.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/public/$1"
     }
   ]
 }

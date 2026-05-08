@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-const MOVI_TOKEN = "2ebb185e-9444-4688-8a45-fadd1534353b";
+const MOVI_TOKEN = process.env.MOVI_TOKEN || "2ebb185e-9444-4688-8a45-fadd1534353b";
 const MOVI_API_URL = `https://api.movidesk.com/public/v1/tickets?token=${MOVI_TOKEN}`;
 
-// ADSDADSA
 
 export default async function handler(req, res) {
   // CORS para chamadas do browser
