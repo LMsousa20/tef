@@ -6,10 +6,5 @@
       "source": "/api/envia",
       "destination": "/api/envia.js"
     }
-  ],
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
