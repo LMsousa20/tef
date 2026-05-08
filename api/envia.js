@@ -3,6 +3,8 @@ import axios from 'axios';
 const MOVI_TOKEN = "2ebb185e-9444-4688-8a45-fadd1534353b";
 const MOVI_API_URL = `https://api.movidesk.com/public/v1/tickets?token=${MOVI_TOKEN}`;
 
+// ADSDADSA
+
 export default async function handler(req, res) {
   // CORS para chamadas do browser
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -28,23 +30,23 @@ export default async function handler(req, res) {
     console.log(JSON.stringify(data, null, 4));
     console.log('='.repeat(50) + '\n');
 
-    const razao_social   = data.razaoSocial      || '';
-    const cnpj           = data.cnpj             || '';
-    const responsavel    = data.responsavel       || '';
-    const telefone       = data.telefone          || '';
-    const email          = data.email             || '';
-    const administradoras = data.administradoras  || [];
-    const bandeiras      = data.bandeiras         || [];
+    const razao_social = data.razaoSocial || '';
+    const cnpj = data.cnpj || '';
+    const responsavel = data.responsavel || '';
+    const telefone = data.telefone || '';
+    const email = data.email || '';
+    const administradoras = data.administradoras || [];
+    const bandeiras = data.bandeiras || [];
 
-    const admin_nomes     = administradoras.map(adm => adm.nome);
+    const admin_nomes = administradoras.map(adm => adm.nome);
     const admin_principal = admin_nomes[0] || '';
 
     let terminal_logico = '';
     if (administradoras.length > 0) {
       const campos = administradoras[0].campos || {};
       terminal_logico =
-        campos['Terminal Lógico']     ||
-        campos['Número Lógico']       ||
+        campos['Terminal Lógico'] ||
+        campos['Número Lógico'] ||
         campos['Cód. Estabelecimento'] || '';
     }
 
