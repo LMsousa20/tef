@@ -49,17 +49,41 @@ export default async function handler(req, res) {
     }
 
     const resumo_formulario = `
-Solicitação via Formulário Web
-----------------------------------------
-👤 Responsável: ${responsavel}
-🏢 Razão Social: ${razao_social}
-📄 CNPJ: ${cnpj}
-📞 Telefone: ${telefone}
-📧 E-mail: ${email}
-💻 Terminal Lógico: ${terminal_logico}
-🔑 Cód. Afiliação: 
-💳 Administradoras: ${admin_nomes.join(', ')}
-🚩 Bandeiras: ${bandeiras.join(', ')}
+<div style="font-family: sans-serif; color: #333; line-height: 1.6;">
+  <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">Solicitação de Implantação TEF</h2>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+    <tr style="background-color: #f8fafc;">
+      <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold; width: 30%;">Responsável</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${responsavel}</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold;">Razão Social</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${razao_social}</td>
+    </tr>
+    <tr style="background-color: #f8fafc;">
+      <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold;">CNPJ</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${cnpj}</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold;">Telefone</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${telefone}</td>
+    </tr>
+    <tr style="background-color: #f8fafc;">
+      <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold;">E-mail</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${email}</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: bold;">Terminal Lógico</td>
+      <td style="padding: 10px; border: 1px solid #e2e8f0;">${terminal_logico}</td>
+    </tr>
+  </table>
+  
+  <h3 style="color: #475569; margin-top: 20px;">Detalhes Técnicos</h3>
+  <div style="background-color: #f1f5f9; padding: 15px; border-left: 4px solid #2563eb; border-radius: 4px;">
+    <p><strong>💳 Administradoras:</strong> ${admin_nomes.join(', ')}</p>
+    <p><strong>🚩 Bandeiras:</strong> ${bandeiras.join(', ')}</p>
+  </div>
+</div>
     `.trim();
 
     const ticket_payload = {
